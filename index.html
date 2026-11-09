@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI 产品案例库网页骨架" />
+    <title>AI Product Cases</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .rag-label{display:block;font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--muted)}.rag-overview,.pm-stage{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.018)}.rag-overview{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.8fr);gap:34px;padding:30px;margin-bottom:30px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(255,255,255,.012) 52%)}.rag-overview h3{font-size:26px;margin:16px 0 10px;letter-spacing:-.05em}.rag-overview p{margin:0;max-width:440px;color:#d6d5d8;font-size:14px}.rag-media-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rag-media-slot{border:1px dashed var(--line-strong);border-radius:9px;min-height:125px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(13,13,15,.34)}.rag-media-slot span{font-size:10px;letter-spacing:.1em;color:var(--subtle)}.rag-media-slot strong{font-size:14px;font-weight:600;color:var(--muted)}.pm-workflow{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}.pm-stage{padding:30px;min-height:0}.pm-stage-wide{grid-column:1/-1}.pm-stage h3{font-size:19px;margin:16px 0 10px;line-height:1.2;letter-spacing:-.04em}.pm-stage p{margin:0;color:var(--muted);font-size:14px}.question-grid,.test-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.question-grid b,.test-tags b{border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:#d6d5d8;font-size:11px;font-weight:500}.task-chain,.interaction-map,.iteration-line{margin-top:20px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}.task-chain b,.solution-map b,.interaction-map b{border:1px solid var(--line);border-radius:7px;padding:10px 12px;color:#d6d5d8;font-size:12px;font-weight:600}.task-chain i,.solution-map i,.iteration-line i{font-style:normal;color:var(--subtle);font-size:14px}.task-chain b:last-child,.solution-source,.interaction-source{border-color:rgba(246,223,157,.55)!important;color:var(--yellow)!important}.solution-map{display:grid;grid-template-columns:minmax(88px,1fr) auto minmax(104px,1.25fr) auto minmax(88px,1fr) auto minmax(88px,1fr);align-items:center;gap:12px;margin-top:22px;padding:22px;border:1px solid var(--line);border-radius:9px;background:rgba(13,13,15,.3)}.solution-map b{text-align:center}.solution-map i{font-size:10px;letter-spacing:.09em;color:var(--subtle);white-space:nowrap}.interaction-map{display:grid;grid-template-columns:1fr 1.5fr;gap:9px}.interaction-map b{padding:14px}.interaction-map b:nth-child(2){grid-row:span 2}.iteration-line{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.iteration-line span{font-size:11px;color:var(--muted)}.video-placeholder{border-style:dashed!important}.video-placeholder p{color:#d6d5d8!important}
+      @media(max-width:720px){.rag-overview{grid-template-columns:1fr;gap:24px;padding:24px}.rag-media-slot{min-height:96px}.pm-workflow{grid-template-columns:1fr;gap:12px}.pm-stage-wide{grid-column:auto}.pm-stage{padding:24px}.task-chain{align-items:stretch}.task-chain b{flex:1 1 42%;text-align:center}.task-chain i{display:none}.solution-map{grid-template-columns:1fr;gap:8px;padding:16px}.solution-map i{display:none}.interaction-map{grid-template-columns:1fr 1fr}.test-tags{gap:6px}}
+      #rag .case-layout{display:block}#rag .rag-case-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 30px;padding:0;border:0}#rag .rag-case-meta>div{padding:14px 18px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.018)}#rag .rag-case-meta span{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;color:var(--subtle)}#rag .rag-case-meta b{font-size:13px;font-weight:600;color:#d6d5d8}#rag .case-content{width:100%}#rag .case-content .pm-stage{padding:30px;min-height:0;border-top:1px solid var(--line)}#rag .case-content .pm-stage--plain{background:transparent;border-width:1px 0 0;border-radius:0;padding:26px 4px 28px}#rag .case-content .pm-stage--solution{padding:34px;background:linear-gradient(135deg,rgba(167,139,250,.13),rgba(255,255,255,.018) 58%);border-color:rgba(167,139,250,.28)}#rag .case-content .pm-stage--interaction{background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.012))}#rag .case-content .pm-stage--test{border-left:2px solid rgba(246,223,157,.62)}#rag .case-content .pm-stage h3{margin-top:16px}#rag .case-content .pm-stage p{margin-bottom:0}@media(max-width:720px){#rag .rag-case-meta{grid-template-columns:1fr;margin-bottom:24px}#rag .rag-case-meta>div{padding:13px 16px}#rag .case-content .pm-stage{padding:24px}#rag .case-content .pm-stage--plain{padding:22px 0 25px}#rag .case-content .pm-stage--solution{padding:26px}}
+      #interview .case-layout{display:block}#interview .interview-case-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 36px;padding:0;border:0}#interview .interview-case-meta>div{padding:14px 18px;border:1px solid #33403b;border-radius:9px;background:rgba(255,255,255,.018)}#interview .interview-case-meta span{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;color:var(--subtle)}#interview .interview-case-meta b{font-size:13px;font-weight:600;color:#d6d5d8}#interview .case-content{width:100%}#interview .interview-workflow{display:grid;gap:18px}#interview .interview-stage{display:grid;grid-template-columns:minmax(104px,.42fr) minmax(0,1.08fr) minmax(0,1fr);gap:28px;padding:clamp(28px,4vw,52px);border:1px solid #33403b;border-radius:12px;background:#121917}#interview .interview-stage__index{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--mint)}#interview .interview-stage__body h3{margin:9px 0 0;font-size:clamp(25px,3vw,38px);line-height:1.08;letter-spacing:-.055em}#interview .interview-stage__detail{align-self:end}#interview .interview-stage__detail p{max-width:440px;margin:0;color:#b8c2bd;font-size:15px;line-height:1.8}#interview .evidence-tag{display:inline-flex;align-items:center;width:max-content;margin-bottom:13px;border:1px solid rgba(159,240,209,.45);border-radius:999px;padding:4px 8px;color:var(--mint);font-size:10px;font-weight:700;letter-spacing:.1em}#interview .evidence-tag--offline{border-color:rgba(246,223,157,.55);color:var(--yellow)}#interview .evidence-tag--pending{border-color:rgba(255,255,255,.25);color:var(--muted)}#interview .interview-stage--product{grid-template-columns:minmax(230px,.82fr) minmax(0,1.18fr);align-items:end}#interview .interview-stage--product .interview-stage__body{max-width:430px}#interview .interview-stage--product .interview-stage__body h3{font-size:clamp(30px,3.6vw,48px)}#interview .interview-stage--product .interview-video-panel{margin:0;padding:0;border:0;border-radius:9px;background:#070b0a;box-shadow:none}#interview .interview-video-panel__player{display:block;width:100%;max-height:620px;aspect-ratio:5 / 4;object-fit:contain;border:1px solid #33403b;border-radius:9px;background:#050807}#interview .interview-video-panel__note{margin:10px 0 0;color:var(--subtle);font-size:11px;letter-spacing:.04em}#interview .trace-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}#interview .trace-list li{border-left:1px solid rgba(159,240,209,.48);padding:7px 0 7px 13px;color:#d6deda;font-size:13px;line-height:1.55}#interview .trace-list b{display:block;margin-bottom:2px;color:var(--mint);font-size:10px;letter-spacing:.1em}#interview .boundary-copy{margin:0;color:var(--muted);font-size:13px;line-height:1.75}@media(max-width:720px){#interview .interview-case-meta{grid-template-columns:1fr;margin-bottom:24px}#interview .interview-case-meta>div{padding:13px 16px}#interview .interview-workflow{gap:12px}#interview .interview-stage,#interview .interview-stage--product{grid-template-columns:1fr;gap:18px;padding:26px 22px}#interview .interview-stage__detail{align-self:auto}#interview .interview-stage__body h3{font-size:29px}#interview .interview-stage--product .interview-stage__body h3{font-size:34px}#interview .interview-video-panel__player{border-radius:7px}}
+      #rag .rag-media-grid{grid-template-columns:1fr}#rag .rag-video-panel{margin-top:14px;padding:clamp(20px,3vw,32px);border:1px solid rgba(167,139,250,.36);border-radius:14px;background:linear-gradient(135deg,rgba(167,139,250,.11),rgba(255,255,255,.018) 45%,rgba(13,13,15,.38));box-shadow:0 18px 48px rgba(0,0,0,.16)}#rag .rag-video-panel__heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.8fr);gap:18px 42px;align-items:end;margin-bottom:22px}#rag .rag-video-panel__heading h3{margin:11px 0 0;font-size:clamp(23px,3vw,34px);line-height:1.08;letter-spacing:-.05em}#rag .rag-video-panel__heading p{margin:0;color:var(--muted);font-size:14px}#rag .rag-video-panel__player{display:block;width:100%;max-height:720px;aspect-ratio:16 / 9;object-fit:contain;border:1px solid var(--line);border-radius:10px;background:#050506}#rag .rag-video-panel__note{margin:12px 0 0;color:var(--subtle);font-size:11px;letter-spacing:.08em}@media(max-width:720px){#rag .rag-video-panel{margin-top:12px;padding:18px}#rag .rag-video-panel__heading{grid-template-columns:1fr;gap:10px;margin-bottom:18px}#rag .rag-video-panel__player{border-radius:8px}}
+      #interview .interview-product-intro{margin:0 0 36px;padding:clamp(28px,4vw,52px);border:1px solid #33403b;border-radius:12px;background:#121917}#interview .interview-product-intro h3{max-width:720px;margin:0;font-size:clamp(30px,4vw,50px);line-height:1.08;letter-spacing:-.06em}#interview .interview-product-intro h4{max-width:720px;margin:13px 0 0;color:var(--mint);font-size:clamp(18px,2vw,25px);line-height:1.25;letter-spacing:-.035em}#interview .interview-product-intro p{max-width:760px;margin:20px 0 0;color:#d6deda;font-size:15px;line-height:1.9}#interview .interview-product-intro__section{max-width:980px;margin-top:48px;padding-top:24px;border-top:1px solid #33403b}#interview .interview-product-intro__section>h3{font-size:clamp(24px,3vw,36px)}#interview .interview-product-intro__mode{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:24px}#interview .interview-product-intro__mode>div{padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.018)}#interview .interview-product-intro__mode h4{margin:0;color:#f1f5f3;font-size:20px}#interview .interview-product-intro__mode p{margin-top:13px;font-size:14px;line-height:1.8}#interview .interview-product-intro__feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 34px;margin-top:24px}#interview .interview-product-intro__feature h4{margin:0;color:#f1f5f3;font-size:18px}#interview .interview-product-intro__feature p{margin-top:10px;font-size:14px;line-height:1.8}@media(max-width:720px){#interview .interview-product-intro{margin-bottom:24px;padding:26px 22px}#interview .interview-product-intro h3{font-size:34px}#interview .interview-product-intro__section{margin-top:34px;padding-top:20px}#interview .interview-product-intro__mode,#interview .interview-product-intro__feature-grid{grid-template-columns:1fr;gap:14px}#interview .interview-product-intro__mode>div{padding:18px}}#interview .interview-pm-stage{display:grid;grid-template-columns:minmax(118px,.32fr) minmax(0,.85fr) minmax(280px,1.1fr);gap:30px;padding:clamp(28px,4vw,52px);border:1px solid #33403b;border-radius:12px;background:#121917}#interview .interview-pm-stage__index{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--mint)}#interview .interview-pm-stage h3{margin:9px 0 0;font-size:clamp(25px,3vw,38px);line-height:1.1;letter-spacing:-.055em}#interview .interview-pm-stage__content p{max-width:610px;margin:0;color:#c4cdc8;font-size:15px;line-height:1.85}#interview .interview-pm-stage__content p+p{margin-top:14px}#interview .interview-pm-stage--wide{grid-template-columns:minmax(118px,.32fr) minmax(0,1fr)}#interview .pm-goal-grid,#interview .pm-needs-grid,#interview .pm-mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#interview .pm-goal-grid>div,#interview .pm-needs-grid>div,#interview .pm-mode-grid>div{padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.018)}#interview .pm-goal-grid b,#interview .pm-needs-grid b,#interview .pm-mode-grid b{display:block;color:#f1f5f3;font-size:14px}#interview .pm-goal-grid span,#interview .pm-needs-grid span,#interview .pm-mode-grid span{display:block;margin-top:7px;color:var(--muted);font-size:13px;line-height:1.65}#interview .pm-needs-grid{grid-template-columns:repeat(3,minmax(0,1fr))}#interview .pm-solution-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:24px;padding:22px;border:1px solid rgba(159,240,209,.28);border-radius:9px;background:#0d1512}#interview .pm-solution-map b{padding:13px 10px;border:1px solid #33403b;border-radius:7px;color:#dce5e0;text-align:center;font-size:13px}#interview .pm-solution-map i{color:var(--mint);font-style:normal}#interview .pm-solution-output{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 0 48%}#interview .pm-solution-output b{padding:12px;border:1px solid rgba(159,240,209,.35);border-radius:7px;color:var(--mint);font-size:13px;text-align:center}#interview .pm-journey{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}#interview .pm-journey b{padding:9px 11px;border:1px solid #33403b;border-radius:7px;color:#dce5e0;font-size:12px}#interview .pm-journey i{color:var(--subtle);font-style:normal}#interview .pm-video{margin-top:22px}#interview .pm-video .interview-video-panel__player{max-height:560px}#interview .pm-evidence{display:grid;gap:12px}#interview .pm-evidence>div{padding:15px;border-left:1px solid rgba(159,240,209,.45);background:rgba(255,255,255,.018)}#interview .pm-evidence p{margin:7px 0 0!important;font-size:13px!important}#interview .pm-evidence .evidence-tag{margin:0}@media(max-width:720px){#interview .interview-pm-stage,#interview .interview-pm-stage--wide{grid-template-columns:1fr;gap:18px;padding:26px 22px}#interview .pm-goal-grid,#interview .pm-needs-grid,#interview .pm-mode-grid{grid-template-columns:1fr}#interview .pm-solution-map{grid-template-columns:1fr;gap:8px}#interview .pm-solution-map i{display:none}#interview .pm-solution-output{margin-left:0}}
+      #interview .case-content{display:block;width:100%;min-width:0}#interview .interview-workflow{width:100%;min-width:0}#interview .interview-pm-stage{width:100%;min-height:0;grid-template-columns:150px minmax(260px,.72fr) minmax(0,1.38fr);align-items:start;padding:clamp(24px,3vw,44px)}#interview .interview-pm-stage--wide{grid-template-columns:150px minmax(0,1fr)}#interview .interview-pm-stage h3{font-size:clamp(24px,2.4vw,34px)}#interview .pm-solution-output{margin-left:34%}@media(max-width:980px){#interview .interview-pm-stage{grid-template-columns:130px minmax(0,1fr);gap:22px}#interview .interview-pm-stage__content,#interview .pm-goal-grid{grid-column:2}#interview .interview-pm-stage--wide{grid-template-columns:130px minmax(0,1fr)}}@media(max-width:720px){#interview .interview-pm-stage,#interview .interview-pm-stage--wide{grid-template-columns:1fr;padding:24px 20px}#interview .interview-pm-stage__content,#interview .pm-goal-grid{grid-column:auto}#interview .pm-solution-output{margin-left:0}}
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回顶部"><span class="brand-mark">G</span><span>GUOGUO / AI PRODUCT CASES</span></a>
+      <nav aria-label="主导航">
+        <a href="#projects">案例概览</a>
+        <a href="#rag">知识库 Agent</a>
+        <a href="#interview">英文面试助手</a>
+        <a href="#method">产品方法</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="eyebrow"><span></span> PRODUCT THINKING · AI DELIVERY</div>
+        <h1 id="hero-title">郭晓弟的作品ui</h1>
+        <a class="text-link" href="#projects">查看案例 <b>↓</b></a>
+        <div class="hero-grid" aria-hidden="true">
+          <div class="grid-label">CASE<br />LIBRARY<br /><em>01—02</em></div><div class="grid-cell"></div><div class="grid-orbit"></div><div class="grid-cell grid-cell--bright"></div>
+        </div>
+      </section>
+
+      <section class="section overview" id="projects" aria-labelledby="overview-title">
+        <div class="section-heading"><div><p class="kicker">01 / SELECTED WORK</p><h2 id="overview-title">项目案例</h2></div><p>两个围绕人和知识流动展开的 AI 产品实践。</p></div>
+        <div class="project-grid">
+          <a class="project-card rag-card" href="#rag">
+            <span class="card-index">01</span><span class="card-arrow">↘</span>
+            <div><p class="card-kind">AI KNOWLEDGE SYSTEM</p><h3>企业知识库<br />Agent RAG</h3><p>让分散知识成为可追溯、可使用的业务能力。</p></div>
+            <div class="card-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+          </a>
+          <a class="project-card interview-card" href="#interview">
+            <span class="card-index">02</span><span class="card-arrow">↘</span>
+            <div><p class="card-kind">AI INTERVIEW PRACTICE</p><h3>英文面试<br />助手</h3><p>将高频练习转化为可重复的表达训练。</p></div>
+            <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="case-section section" id="rag" aria-labelledby="rag-title">
+        <div class="case-number">CASE 01</div>
+        <div class="case-intro"><p class="kicker">ENTERPRISE KNOWLEDGE · RAG</p><h2 id="rag-title">企业知识库<br />Agent RAG</h2><p>从资料查找与来源核对出发，展示一套 RAG 产品的工作框架与产品思路。</p></div>
+        <div class="case-layout">
+          <aside class="rag-case-meta" aria-label="案例范围与当前状态"><div><span>FOCUS</span><b>产品工作框架 · 来源核对</b></div><div><span>STATUS</span><b>个人试用 · 受控测试</b></div></aside>
+          <div class="case-content">
+            <div class="rag-overview" aria-labelledby="rag-overview-title">
+              <div><span class="rag-label">01 / 产品概览</span><h3 id="rag-overview-title">郭郭的 RAG</h3><p>一个基于资料的知识问答助手，帮助用户导入资料、提出问题，并查看回答对应的来源。</p></div>
+              <div class="rag-media-grid"><div class="rag-media-slot"><span>真实产品截图</span><strong>待提供</strong></div></div>
+            </div>
+            <div class="pm-workflow" aria-label="RAG 产品经理工作过程示意">
+              <article class="pm-stage pm-stage--plain"><span class="rag-label">02 / 发现问题</span><h3>查到信息，还需要核对依据</h3><p>资料查找并不止于得到答案；来源是否支持回答，仍需要被看见和核对。</p><div class="question-grid"><b>谁在查</b><b>查什么</b><b>如何核对</b><b>错了怎样</b></div></article>
+              <article class="pm-stage pm-stage--plain"><span class="rag-label">03 / 定义需求</span><h3>让任务从资料走到可核对的回答</h3><p>把用户任务收敛为：导入资料、提出问题、查看回答、核对来源。</p><div class="task-chain"><b>导入资料</b><i>→</i><b>提出问题</b><i>→</i><b>查看回答</b><i>→</i><b>核对来源</b></div></article>
+              <article class="pm-stage pm-stage-wide pm-stage--solution"><span class="rag-label">04 / 设计方案</span><h3>将资料、检索、回答与来源组织成可理解的链路</h3><p>以下为工作框架示意，不是系统架构截图或已验证的技术承诺。</p><div class="solution-map"><b>资料</b><i>检索</i><b>相关片段</b><i>生成</i><b>回答</b><i>关联</i><b class="solution-source">来源</b></div></article>
+              <article class="pm-stage pm-stage--interaction"><span class="rag-label">05 / 设计交互</span><h3>回答与来源同时可见</h3><p>关键交互围绕问答和来源查看，让用户能回到对应依据。</p><div class="interaction-map"><b>资料区</b><b>问答区</b><b>回答</b><b class="interaction-source">来源查看</b></div></article>
+              <article class="pm-stage pm-stage--test"><span class="rag-label">06 / 测试与迭代</span><h3>用问题检查回答与来源</h3><p>围绕不同类型的问题检查回答和来源，并从资料、检索、回答、交互等方面定位问题与优化方向。</p><div class="iteration-line"><span>资料</span><i>→</i><span>检索</span><i>→</i><span>回答</span><i>→</i><span>交互</span></div></article>
+            </div>
+          </div>
+        </div>
+        <div class="materials"><div><span>WORKING BOUNDARY</span><h3>当前验证边界</h3><p>目前仅限个人试用与受控测试；不代表对外用户验证或完整结果结论。</p></div></div>
+        <section class="rag-video-panel" aria-labelledby="rag-video-title">
+          <div class="rag-video-panel__heading"><span class="rag-label">MEDIA / 产品操作视频</span><h3 id="rag-video-title">从提问到查看回答</h3><p>录屏展示已装入资料后，用户在 RAG 产品中提问并获得回答的过程。视频无声音。</p></div>
+          <video class="rag-video-panel__player" controls preload="metadata" playsinline aria-describedby="rag-video-note">
+            <source src="assets/videos/rag-product-operation-2026-11-09.mp4" type="video/mp4" />
+            <source src="assets/videos/rag-product-operation-2026-11-09.mov" type="video/quicktime" />
+            您的浏览器不支持内嵌视频播放。请直接打开视频文件查看。
+          </video>
+          <p class="rag-video-panel__note" id="rag-video-note">24 秒产品操作录屏 · 手动播放</p>
+        </section>
+      </section>
+
+      <section class="case-section section inverse" id="interview" aria-labelledby="interview-title">
+        <div class="case-number">CASE 02</div>
+        <div class="case-intro"><p class="kicker">VOICE · PRACTICE · TEXT ANSWER</p><h2 id="interview-title">英文助手</h2><p>从英文面试准备的真实困难出发，整理需求、方案、实现与后续体验检查。</p></div>
+        <div class="case-layout">
+          <aside class="interview-case-meta" aria-label="案例范围与当前状态"><div><span>FOCUS</span><b>英文问题识别 · 文字回答</b></div><div><span>STATUS</span><b>个人开发 · 受控验证</b></div></aside>
+          <section class="interview-product-intro" aria-labelledby="interview-product-intro-title">
+            <h3 id="interview-product-intro-title">英文面试助手</h3>
+            <h4>从听懂问题，到组织自己的英文回答</h4>
+            <p>「郭郭的英文使用器」是一款面向英文面试练习的 Mac 桌面辅助工具，将语音识别、中文翻译、个人资料与英文回答生成连接起来，帮助用户完成“听问题—理解意思—组织答案—练习表达”的过程。</p>
+            <p>产品源于一个具体的困难：英文基础有限的求职者，即使熟悉自己的工作，也可能在英文问答中遇到听不清、反应慢、不会组织句子的问题。翻译问题只是第一步，真正困难的是把自己的经历转换成当下能说出来的英文。</p>
+            <p>因此，这个产品不仅提供问题翻译，还结合候选人的身份、工作经历和业务资料生成回答，并通过预先整理的词句与替换规则，约束答案尽量简单、直接、便于朗读。</p>
+
+            <div class="interview-product-intro__section">
+              <h3>两种回答方式，对应不同练习需要</h3>
+              <div class="interview-product-intro__mode">
+                <div><h4>文字回答：看懂，再自己说</h4><p>接收问题声音，显示识别到的英文问题及中文翻译，随后流式展示英文答案，并在答案完成后显示中文意思。</p><p>用户可以先理解内容，再自行朗读和调整表达。这一模式不播放答案声音，重点是辅助用户组织语言，而不是替代用户表达。</p></div>
+                <div><h4>语音回答：听示范，练习表达</h4><p>在语音问答流程中生成并播放英文回答，支持使用基于本人声音样本的复刻音色。用户可以听取回答示范，辅助熟悉英文表达。</p><p>两种模式通过独立入口进入，避免把文字阅读、语音播放和不同操作混在同一个页面中。</p></div>
+              </div>
+            </div>
+
+            <div class="interview-product-intro__section">
+              <h3>核心功能</h3>
+              <div class="interview-product-intro__feature-grid">
+                <div class="interview-product-intro__feature"><h4>多来源声音输入</h4><p>支持选择麦克风、电脑声音或混合输入，适应本人提问练习及电脑播放问题等场景。用户主动点击开始后才启动采集，运行中锁定输入来源，减少误切换。</p></div>
+                <div class="interview-product-intro__feature"><h4>问题识别与中文理解</h4><p>将接收到的问题转换成英文文字，并提供中文翻译。保留问题展示区，让用户能够对照识别内容，判断系统是否听对，而不是只看到一个无法核对来源的答案。</p></div>
+                <div class="interview-product-intro__feature"><h4>基于个人资料组织回答</h4><p>接入候选人的身份、经历和业务资料，为回答提供个人化依据。目标不是输出泛泛的面试范文，而是围绕“我做过什么、我如何处理、我的结果是什么”组织表达。</p></div>
+                <div class="interview-product-intro__feature"><h4>按熟悉词句约束表达</h4><p>将提前筛选的词汇、短语、简单句型和难词替代规则纳入回答要求。强调问什么答什么，不主动反问或补充无关背景；在保持必要信息的前提下，减少长句和书面化商务表达。</p></div>
+                <div class="interview-product-intro__feature"><h4>英文答案与中文意思对照</h4><p>英文答案优先展示，中文意思在完成后异步补充，方便用户核对答案含义。问题翻译与答案翻译分别展示，避免把“对方在问什么”和“自己准备回答什么”混淆。</p></div>
+                <div class="interview-product-intro__feature"><h4>独立英文悬浮窗</h4><p>提供置顶的英文答案窗口，同步主页面的回答内容，便于在其他窗口旁查看和阅读。悬浮窗复用已有结果，不另外发起回答生成。</p></div>
+              </div>
+            </div>
+
+            <div class="interview-product-intro__section">
+              <h3>交互与实现重点</h3>
+              <p>产品围绕连续问答设计：一次开始后持续接收问题，减少反复点击录音、提交和生成的操作。针对句中停顿、问题分段、生成中再次说话等情况，加入片段合并、旧响应取消和迟到结果隔离，降低旧答案覆盖新题的风险。</p>
+              <p>同时，将主要操作与阅读内容分开：英文回答和中文意思优先展示，识别问题保留用于核对，设置与高级诊断收起到次要位置。</p>
+            </div>
+
+            <div class="interview-product-intro__section">
+              <h3>当前进展</h3>
+              <p>目前已形成可运行的个人开发原型，并完成多轮离线回归及有限真实测试。实际使用中仍发现响应延迟、转写超时和回答不完整等问题，尚未达到稳定秒回的目标。</p>
+              <p>下一阶段重点不是继续增加功能，而是验证更清晰的识别与回答链路，分别测量识别等待、模型首字、完整答案与页面显示耗时，在速度、完整性和连续问答稳定性之间取得可验证的改善。</p>
+            </div>
+          </section>
+          <div class="case-content">
+            <div class="interview-workflow" aria-label="英文助手产品经理制作过程">
+              <article class="interview-pm-stage">
+                <span class="interview-pm-stage__index">01 / 产品机会</span>
+                <div><h3>为什么想做</h3></div>
+                <div class="interview-pm-stage__content"><p>从英文面试准备的实际经历出发：即使熟悉自己的工作，面对英文问答时仍可能听不清、反应慢，或无法把自己的经历组织成当下能说出来的英文。介绍框中的问题描述是用户提供的产品背景；未新增访谈、竞品或外部用户结论。</p></div>
+              </article>
+              <article class="interview-pm-stage">
+                <span class="interview-pm-stage__index">02 / 产品目标</span>
+                <div><h3>希望做到什么</h3></div>
+                <div class="pm-goal-grid"><div><b>完成一次准备过程</b><span>听问题 → 理解意思 → 组织答案 → 练习表达。</span></div><div><b>文字回答</b><span>帮助用户看懂问题、阅读英文答案，再自行朗读和调整表达。</span></div><div><b>语音回答</b><span>提供英文回答示范，辅助熟悉表达。</span></div><div><b>模式独立</b><span>让文字阅读与语音播放从不同入口进入，避免混在同一页面。</span></div></div>
+              </article>
+              <article class="interview-pm-stage interview-pm-stage--wide">
+                <span class="interview-pm-stage__index">03 / 需求定义</span>
+                <div><h3>需要哪些能力</h3><div class="pm-needs-grid"><div><b>声音输入</b><span>服务于本人练习或播放问题等不同使用场景。</span></div><div><b>问题识别</b><span>把接收到的问题转成可核对的英文文字。</span></div><div><b>中文理解</b><span>帮助用户先理解对方在问什么。</span></div><div><b>个人化回答</b><span>用身份、经历和业务资料组织回答依据。</span></div><div><b>简单词句</b><span>减少长句和书面化表达，便于朗读。</span></div><div><b>答案对照</b><span>把英文回答与中文意思分开呈现，避免混淆。</span></div></div></div>
+              </article>
+              <article class="interview-pm-stage interview-pm-stage--wide">
+                <span class="interview-pm-stage__index">04 / 方案设计</span>
+                <div><h3>如何组成产品</h3><div class="interview-pm-stage__content"><p>根据用户提供的介绍整理为网页原生示意：输入、识别与理解、个人资料和回答生成共同构成两种回答方式。该图说明产品方案，不等同于技术架构截图或已完成能力证明。</p></div><div class="pm-solution-map" aria-label="英文助手方案示意"><b>声音输入</b><i>→</i><b>问题识别<br />中文理解</b><i>→</i><b>个人资料<br />回答生成</b></div><div class="pm-solution-output"><b>文字回答：阅读与自行表达</b><b>语音回答：听示范与练习</b></div></div>
+              </article>
+              <article class="interview-pm-stage interview-pm-stage--wide">
+                <span class="interview-pm-stage__index">05 / 交互设计与产品实现</span>
+                <div><h3>用户如何使用，产品如何被做出来</h3><div class="pm-journey"><b>选择回答方式</b><i>→</i><b>选择声音来源</b><i>→</i><b>主动开始</b><i>→</i><b>识别问题与翻译</b><i>→</i><b>阅读或听取回答</b></div><div class="interview-pm-stage__content"><p>现有原型资料可支持：用户通过主动点击开始、文字回答和语音问答使用独立入口；文字回答记录展示了问题、翻译和英文回答。录屏保留了实际等待过程，不以剪辑掩盖。</p></div><div class="pm-video"><span class="evidence-tag">实测</span><video class="interview-video-panel__player" controls preload="metadata" playsinline aria-describedby="interview-video-note"><source src="assets/videos/english-interview-assistant-operation-2026-11-09.mp4" type="video/mp4" /><source src="assets/videos/english-interview-assistant-operation-2026-11-09.mov" type="video/quicktime" />您的浏览器不支持内嵌视频播放。请直接打开视频文件查看。</video><p class="interview-video-panel__note" id="interview-video-note">真实录屏：文字回答的一次问题识别、等待与回答过程。无声音，手动播放。</p></div></div>
+              </article>
+              <article class="interview-pm-stage interview-pm-stage--wide">
+                <span class="interview-pm-stage__index">06 / 体验与迭代</span>
+                <div><h3>做出来后如何检查和改进</h3><div class="pm-evidence"><div><span class="evidence-tag">实测</span><p>脱敏运行记录包含文字回答的语音停止、最终转写、回答请求、首段文本和完成等阶段事件，可用于分开观察识别与回答过程。</p></div><div><span class="evidence-tag evidence-tag--offline">离线测试</span><p>当前轮次门控的离线测试覆盖旧轮次、重复触发、取消与关闭通道，避免它们继续请求。</p></div><div><span class="evidence-tag evidence-tag--pending">待验证</span><p>介绍框中提到的响应延迟、转写超时和回答不完整，提示下一步需分别核对识别等待、首段文本、完整答案与页面显示；未把它们写成整体体验已改善的结论。</p></div></div></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="method section" id="method" aria-labelledby="method-title">
+        <p class="kicker">03 / PRODUCT PRINCIPLES</p><h2 id="method-title">从案例中持续提炼<br />AI 产品的方法</h2>
+        <div class="method-grid"><article><span>01</span><h3>从真实问题开始</h3><p>先理解人、场景与任务，再确定技术应承担的角色。</p></article><article><span>02</span><h3>让过程可理解</h3><p>把输入、判断与结果组织成用户能够建立信任的体验。</p></article><article><span>03</span><h3>用验证推动迭代</h3><p>保留边界和证据，以真实反馈校准下一步产品决策。</p></article></div>
+      </section>
+    </main>
+    <footer><span>AI PRODUCT CASES</span><span>© 2026 · CASE LIBRARY</span><a href="#top">回到顶部 ↑</a></footer>
+  </body>
+</html>
